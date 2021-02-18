@@ -1,0 +1,88 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Collections;
+using System.Text.RegularExpressions;
+
+					
+public class Program
+{
+	static bool isEv(int s){
+		
+		if(s%2==0) return true;
+		return false;
+	}
+	
+	static bool isLessOne(int x, List<int> l){
+		return l.All(s =>s>x+1);
+	}
+	
+	public static void Main()
+	{
+		
+		var l = new List<int>() { 
+		1,5,2,7,4,6,9};
+		
+		//list to array
+		var arr = l.ToArray();
+		//array to list
+		var list = new List<int>(arr);
+		//array sorting with linq
+		var values = arr.OrderBy(p => p).ToList();
+		var sortedDesc = l.OrderByDescending(x => x).ToArray();
+		
+		var isDev=l.Where(s=>!isEv(s));
+		//list sorting
+		l.Sort();
+		
+		//Array.Reverse(sortedDesc);
+		
+		//diff calcul
+		var differences =l.Zip(l.Skip(1), (x, y) => y - x);
+		//var k_dist=l.Where(s=>
+		var pivot=20;
+		
+		// get closest elt to pivot
+		var closest = l.Select(n => Math.Abs(pivot - n)).Min();
+		
+		//init List with default value
+		var a= Enumerable.Repeat(1, 100).ToList();
+		
+		//Stack 
+		Stack st = new Stack();
+         st.Push(1);
+         st.Push(2);
+		var peek=st.Peek();
+		var isContains=st.Contains('B');
+		var stackToArray=st.ToArray();
+		var count=st.Count;
+		
+		//Queue
+		Queue q = new Queue();
+		q.Enqueue("Two");
+		q.Enqueue("One");
+		// remove elements
+		while (q.Count > 0)
+		Console.WriteLine(q.Dequeue());
+		
+		// Array 
+		var arrStr=new string[]{"a1","b2","c3","d4"};
+		int length =  arrStr.Length;		
+		var arrInt=arrStr.Select(s=>Regex.Match(s, @"\d+").Value).Select(s=>int.Parse(s)).ToArray();//map to specific type
+		Array.Sort(arrInt);
+		var subArr = arrStr.Skip(1).Take(2).ToArray(); //take subArray or subList
+		
+		//nesrest point to zero problem
+		var array= new int[]{6,-7,5,-8,2,-3,7,-20,-1};
+		var pos=array.Where(s=>s>0).Min();
+		var inf=array.Where(s=>s<0).Max();
+		var nearest=pos<=-inf?pos:inf;
+		
+		
+		
+		foreach (var x in subArr)
+		{
+ 		   Console.WriteLine(nearest);
+		}
+	}
+}

@@ -1,0 +1,287 @@
+
+#################################BinaryTree C#  ##########################
+
+// Non-recursive C# program for inorder traversal 
+using System; 
+using System.Collections.Generic; 
+  
+  
+/* Class containing left and right child of  
+current node and key value*/
+public class Node 
+{ 
+    public int data; 
+    public Node left, right; 
+  
+    public Node(int item) 
+    { 
+        data = item; 
+        left = right = null; 
+    } 
+} 
+  
+/* Class to print the inorder traversal */
+public class BinaryTree 
+{ 
+    public Node root; 
+    public virtual void inorder() 
+    { 
+        if (root == null) 
+        { 
+            return; 
+        } 
+  
+  
+        Stack<Node> s = new Stack<Node>(); 
+        Node curr = root; 
+  
+        // traverse the tree  
+        while (curr != null || s.Count > 0) 
+        { 
+  
+            /* Reach the left most Node of the  
+            curr Node */
+            while (curr != null) 
+            { 
+                /* place pointer to a tree node on  
+                   the stack before traversing  
+                  the node's left subtree */
+                s.Push(curr); 
+                curr = curr.left; 
+            } 
+  
+            /* Current must be NULL at this point */
+            curr = s.Pop(); 
+  
+            Console.Write(curr.data + " "); 
+  
+            /* we have visited the node and its  
+               left subtree.  Now, it's right  
+               subtree's turn */
+            curr = curr.right; 
+        } 
+    } 
+
+
+
+
+####################################  Stack and Queue in C#  #############
+
+Stack<int> myStack = new Stack<int>();
+myStack.Push(1);
+
+int[] arr = new int[]{ 1, 2, 3, 4};
+Stack<int> myStack = new Stack<int>(arr);
+
+
+Count	Returns the total count of elements in the Stack.
+Push(T)	Inserts an item at the top of the stack.
+Peek()	Returns the top item from the stack.
+Pop()	Removes and returns items from the top of the stack.
+Contains(T)	Checks whether an item exists in the stack or not.
+Clear()	Removes all items from the stack.
+
+
+
+
+
+Queue<int> callerIds = new Queue<int>();
+callerIds.Enqueue(1);
+
+
+Count	Returns the total count of elements in the Queue.
+Method	Usage
+Enqueue(T)	Adds an item into the queue.
+Dequeue	Returns an item from the beginning of the queue and removes it from the queue.
+Peek(T)	Returns an first item from the queue without removing it.
+Contains(T)	Checks whether an item is in the queue or not
+Clear()	Removes all the items from the queue.
+
+
+
+
+
+IDictionary<int, string> numberNames = new Dictionary<int, string>();
+numberNames.Add(1,"One"); //adding a key/value using the Add() method
+
+
+var cities = new Dictionary<string, string>(){
+	{"UK", "London, Manchester, Birmingham"},
+	{"USA", "Chicago, New York, Washington"},
+	{"India", "Mumbai, New Delhi, Pune"}
+};
+
+
+foreach(KeyValuePair<int, string> kvp in numberNames)
+    Console.WriteLine("Key: {0}, Value: {1}", kvp.Key, kvp.Value);
+
+
+if(cities.TryGetValue("France", out result))
+{
+    Console.WriteLine(result);
+}
+
+if(cities.ContainsKey("France")){
+    cities["France"] = "Paris";
+}
+
+for (int i = 0; i < cities.Count; i++)
+{
+    Console.WriteLine("Key: {0}, Value: {1}", 
+                                            cities.ElementAt(i).Key, 
+                                            cities.ElementAt(i).Value);
+}
+
+
+
+ArrayList arlist = new ArrayList()
+                        {
+                            1,
+                            "Bill",
+                            300,
+                            4.5F
+                        };
+
+
+
+
+foreach (var item in arlist)
+    Console.Write(item + ", "); //output: 1, Bill, 300, 4.5, 
+
+
+
+            
+
+########################## Sort List in c# ############################
+
+class GFG : IComparer<int> 
+{ 
+    public int Compare(int x, int y) 
+    { 
+        if (x == 0 || y == 0) 
+        { 
+            return 0; 
+        } 
+          
+        // CompareTo() method 
+        return x.CompareTo(y); 
+          
+    } 
+} 
+  
+
+GFG gg = new GFG(); 
+
+list1.Sort(gg);
+
+
+########################### Lists intersection in c# ################
+
+List<int> data1 = new List<int> {1,2,3,4,5};
+List<string> data2 = new List<string>{"6","3"};
+
+var newData = data1.Select(i => i.ToString()).Intersect(data2);
+
+
+
+
+var data1 = new List<int> {1,2,3,4,5};
+var data2 = new List<int>{6,3};
+var newData = data1.Intersect(data2);
+
+######################### Dictionaries intersection c# ################
+
+resultDict =  primaryDict.Keys.Intersect(secondaryDict.Keys)
+                              .ToDictionary(t => t, t => primaryDict[t]);
+
+or
+
+resultDict =  primaryDict.Where(x => secondaryDict.ContainsKey(x.Key))
+                         .ToDictionary(x => x.Key, x => x.Value);
+
+
+######################### Dicitonaries union ########################
+
+var d3 = d.Concat(d2).ToDictionary(s => s.Key, s => s.Value);
+
+########################  Exception in C#  ##########################
+var intersection = dictionaryA.Keys.Intersect(dictionaryB.Keys);
+
+var extraKeysInA = dictionaryA.Keys.Except(intersection);
+var extraKeysInB = dictionaryB.Keys.Except(intersection);
+
+
+#################### Print Dictionary #############################
+
+var lines = dictionary.Select(kvp => kvp.Key + ": " +kvp.Value.ToString());
+
+
+foreach (KeyValuePair<DateTime, string> kvp in dictionary)
+{
+    //textBox3.Text += ("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+    textBox3.Text += string.Format("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+}
+
+
+
+################################### List union #################
+
+
+listA.AddRange(listB);
+
+or 
+
+var listFinal = listA.Union(listB);
+
+or
+
+ var listFinal = listA.Concat(listB);
+
+or 
+
+array1.Union(array2).Union(array3).Count(x => x >= 0)
+
+or 
+
+string.Join(",", array1.Union(array2).Union(array3).Where(x => x >= 0))
+
+
+################################  String iteration #############
+
+foreach (char c in value)
+{
+  Console.WriteLine(c);
+}
+
+
+// Version 2: use for-loop.
+for (int i = 0; i < value.Length; i++)
+{
+  Console.WriteLine(value[i]);
+}
+
+
+// Loop over string in reverse.
+for (int i = id.Length - 1; i >= 0; i--)
+{
+  Console.WriteLine("REVERSE: {0}", id[i]);
+}
+
+
+public static string Reverse( string s )
+{
+    char[] charArray = s.ToCharArray();
+    Array.Reverse( charArray );
+    return new string( charArray );
+}
+
+
+########################  Lists Compare ######################
+
+
+var firstNotSecond = list1.Except(list2).ToList();
+var secondNotFirst = list2.Except(list1).ToList();
+
+return !firstNotSecond.Any() && !secondNotFirst.Any();
+
+
